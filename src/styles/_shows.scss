@@ -17,13 +17,18 @@
             
         }
 
-        &--is_active {
+        &--is-active {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             gap: 24px;
             animation:  list_active .4s;
             opacity: 1;
         }
+
+        @media (max-width: 768px) {
+            grid-template-columns: 1fr 1fr;
+        }
+
 
         &__item {
 
@@ -40,7 +45,12 @@
         align-items: center;
         gap: 20px;
 
-        
+        @media (max-width: 768px) {
+            white-space: nowrap;
+            overflow-x: scroll;
+            padding-left: 40px;
+        }
+
         &__button {
             background: none;
             color: variaveis.$corTextoSecundario;
@@ -63,7 +73,7 @@
 
             }
 
-            &--is_active {
+            &--is-active {
                 position: relative;
 
                 &::after {
@@ -80,7 +90,10 @@
                 }
             }
 
-            
+            @media (max-width: 768px) {
+                font-size: 16px;
+            }
+
         }
     }
 }

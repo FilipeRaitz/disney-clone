@@ -1,0 +1,78 @@
+.faq {
+    padding: 5.6vw;
+
+    h2 {
+        text-align: center ;
+        margin-bottom: 24px;
+    }
+
+    &__questions {
+        &__item {
+            background-color: #13151d;
+            margin-bottom: 16px;
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows .5s;
+            
+
+            &__question {
+                color: #fff;
+                font-size: 20px;
+                padding: 24px;
+                display: block;
+                cursor: pointer;
+                position: relative;
+                
+
+                &::before, &::after {
+                    position: absolute;
+                    content:'';
+                    background-color: #fff;
+                    right: 24px;
+                    top: calc(24px + 0.5em);
+                    width: 1em;
+                    height: 3px;
+                    display: block;
+                    transition: ease-in .3s;
+                }
+                &::after {
+                    rotate: 90deg;
+                }
+            }
+
+            &__answer {
+                display: grid;
+                grid-template-rows: 0fr;
+                padding-inline: 24px;
+                padding-block: 0;
+                transition: ease-in-out .3s;
+
+                div {
+                    overflow: hidden;
+                }
+
+                ul {
+                    list-style: outside ;
+                    li {
+                        padding: 1em;
+                    }
+                }
+            }
+
+            &--is-open {
+                .faq__questions__item__answer {
+                    padding-inline: 24px;
+                    padding-bottom: 24px;
+                    transition: ease-in-out .3s;
+                    grid-template-rows: 1fr;
+                }
+                
+                .faq__questions__item__question::before, .faq__questions__item__question::after {
+                    transform: rotate(45deg);
+                    
+                }
+                
+            }
+        }
+    }
+}

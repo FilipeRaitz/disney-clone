@@ -1,7 +1,12 @@
+@use 'header';
 @use 'variaveis';
 @use 'hero';
 @use 'shows';
 @use 'plans';
+@use 'available-devices';
+@use 'faq';
+@use 'footer';
+
 
 @font-face {
     font-family: Avenir;
@@ -41,14 +46,26 @@ body {
 
 .text--big {
     @include text(18px);
+
+    @media (max-width:768px) {
+        @include text(15px);
+    }
 }
 
 .text {
     @include text;
+
+    @media (max-width:768px) {
+        @include text(14px);
+    }
 }
 
 .text--small {
     @include text(12px);
+
+    @media (max-width:768px) {
+        @include text(11px);
+    }
 }
 
 .link-text {
@@ -59,32 +76,124 @@ body {
 
 .title--big {
     @include title(44px);
+
+    @media (max-width:768px) {
+        @include title(26px);
+    }
 }
 
 .title {
     @include title;
+
+    @media (max-width:768px) {
+        @include title(24px);
+    }
 }
 
 .title--small {
     @include title(28px);
+
+    @media (max-width:768px) {
+        @include title(22px);
+    }
 }
 
 .button {
+    $button-bg: variaveis.$corDeFundoBotaoPrimario;
     display: block;
     width: 100%;
     height: 60px;
     font-size: 18px;
     text-transform: uppercase;
     color: variaveis.$corTextoSecundario;
-    background-color: #6421ff;
+    background-color: $button-bg;
     border: none;
     border-radius: 4px;
-    margin-top: 2vw;
-    margin-bottom: 8px;
+    text-decoration: none;
+    text-align: center;
+    letter-spacing: 1px;
+    border: inherit 1px solid;
     cursor: pointer;
+    transition: ease .2s;
 
     &:hover {
-        background-color: darken( #6421ff, 15%);
-        transition: ease-in-out .2s;
+        // background-color: color.scale($button-bg, $lightness: 15%);
+        background-color: lighten($button-bg , 5%);
+        
+    }
+
+    &--secondary {
+        $button-bg: variaveis.$corDeFundoBotaoSecundario;
+        background-color: $button-bg;
+
+        &:hover {
+            // background-color: color.scale($button-bg, $lightness: 15%);
+            background-color: lighten($button-bg , 5%);
+        }
+    }
+
+    &--dark {
+        $button-bg: rgba(variaveis.$corDeFundo, 0.8);
+        background-color: $button-bg;
+        border: variaveis.$corTextoPrincipal 1px solid;
+        
+        &:hover {
+            background-color: variaveis.$corTextoSecundario;
+            color: variaveis.$corDeFundo;
+        }
+    }
+
+    
+}
+
+.image-text-section {
+    padding: 5.6vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+
+    @media (max-width: 768px) {
+        display: block;
+    }
+
+    img {
+        max-width: 100%;
+    }
+
+    &__text-container {
+        padding: 2em;
+    }
+
+    h2 {
+        margin-bottom: 24px;
+    }
+
+    &--image-full-width {
+        display: block;
+        position: relative;
+
+        
+
+        img {
+            width: 100%;
+        }
+
+        &__text-container {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            height: 100%;
+            width: calc(50% - 5.6vw);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            @media (max-width: 768px) {
+                position: relative;
+                left: 0;
+                width: 100%;
+            }
+        
+        }
     }
 }
